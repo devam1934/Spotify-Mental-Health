@@ -11,7 +11,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id='8fb41c10ec9348fd847cf2e4569bfac3',
     client_secret='cc3facc7b8b549da9235e1770d94ad00',
-    redirect_uri='http://localhost:8888/callback',
+    redirect_uri='https://spotify-mental-health.streamlit.app/',
     scope='user-top-read user-read-recently-played'))
 
 # VADER Sentiment Analysis
@@ -138,6 +138,12 @@ def plot_popularity_distribution(df):
 # Web App with Streamlit
 def main():
     st.title("Spotify Listening Behavior & Mental Health Insights")
+
+    # Check if user is authenticated
+    if not sp.current_user():
+        st.write("Please log in to Spotify to see your insights.")
+        return
+    
     df = get_recent_tracks()
 
     features = extract_features(df)
