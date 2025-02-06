@@ -142,6 +142,11 @@ def main():
     # Check if user is authenticated
     if not sp.current_user():
         st.write("Please log in to Spotify to see your insights.")
+        st.markdown("[Login to Spotify](https://accounts.spotify.com/authorize?client_id={}&response_type=code&redirect_uri={}&scope={})".format(
+            st.secrets["client_id"],
+            'https://spotify-mental-health.streamlit.app/',  # Change this to your deployed app's URL
+            'user-top-read user-read-recently-played'
+        ))
         return
     
     df = get_recent_tracks()
