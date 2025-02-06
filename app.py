@@ -7,6 +7,8 @@ import streamlit as st
 from sklearn.ensemble import IsolationForest
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+st.set_page_config(page_title="Spotify Insights", layout="wide")
+
 # Spotify API Authentication
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id='8fb41c10ec9348fd847cf2e4569bfac3',
